@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-ink: #0f2a33;
+  --color-ink-2: #163b47;
+}
+
+html { -webkit-font-smoothing: antialiased; }
+body { @apply text-slate-800; }
+.tabular { font-variant-numeric: tabular-nums; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes slide-in { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes sheet-in { from { transform: translateY(100%); } to { transform: none; } }
+.animate-rise { animation: rise .25s ease-out both; }
+.drawer-panel { animation: sheet-in .28s cubic-bezier(.2,.8,.2,1) both; }
+@media (min-width: 768px) { .drawer-panel { animation-name: slide-in; } }
+
+@media print {
+  body * { visibility: hidden !important; }
+  #print-certificate, #print-certificate * { visibility: visible !important; }
+  #print-certificate { position: absolute; inset: 0; margin: 0; box-shadow: none !important; }
+}

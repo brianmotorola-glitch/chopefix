@@ -1,0 +1,41 @@
+{
+  "name": "chopefix",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ChopeFix: fixed-price home repairs marketplace MVP (Singapore)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c cyan,magenta \"node --watch --disable-warning=ExperimentalWarning server/index.ts\" \"vite\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.server.json --noEmit",
+    "build": "npm run typecheck && vite build && esbuild server/index.ts --bundle --platform=node --format=esm --packages=external --target=node22 --outfile=dist/server/index.js",
+    "start": "node --disable-warning=ExperimentalWarning dist/server/index.js",
+    "test:e2e": "node --disable-warning=ExperimentalWarning tests/e2e.ts",
+    "screenshots": "node --disable-warning=ExperimentalWarning scripts/screenshots.ts",
+    "reset-db": "rm -f data/chopefix.db* && echo 'DB removed; it will be re-seeded on next start'"
+  },
+  "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "express": "^5.3.0",
+    "multer": "^2.5.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.3.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "concurrently": "^10.0.7",
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.65.1",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}
